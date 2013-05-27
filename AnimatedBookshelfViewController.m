@@ -91,20 +91,20 @@
     }
 }
 
-#define SINK_CONTROL_STOP_DRAIN @"Stopper Drain"
-#define SINK_CONTROL_UNSTOP_DRAIN @"Unstopper Drain"
-#define SINK_CONTROL @"Bookshelf Control"
-#define SINK_CONTROL_CANCEL @"Cancel"
-#define SINK_CONTROL_EMPTY @"Empty Bookshelf"
+#define BOOKSHELF_CONTROL_STOP_DRAIN @"Stopper Drain"
+#define BOOKSHELF_CONTROL_UNSTOP_DRAIN @"Unstopper Drain"
+#define BOOKSHELF_CONTROL @"Bookshelf Control"
+#define BOOKSHELF_CONTROL_CANCEL @"Cancel"
+#define BOOKSHELF_CONTROL_EMPTY @"Empty Bookshelf"
 
 
 - (IBAction)controlBookshelf:(UIBarButtonItem *)sender {
     if (!self.bookshelfControlActionSheet) {
-        NSString *drainButton = self.drainTimer ? SINK_CONTROL_STOP_DRAIN : SINK_CONTROL_UNSTOP_DRAIN;
-        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:SINK_CONTROL
+        NSString *drainButton = self.drainTimer ? BOOKSHELF_CONTROL_STOP_DRAIN : BOOKSHELF_CONTROL_UNSTOP_DRAIN;
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:BOOKSHELF_CONTROL
                                                                  delegate:self
-                                                        cancelButtonTitle:SINK_CONTROL_CANCEL
-                                                   destructiveButtonTitle:SINK_CONTROL_EMPTY
+                                                        cancelButtonTitle:BOOKSHELF_CONTROL_CANCEL
+                                                   destructiveButtonTitle:BOOKSHELF_CONTROL_EMPTY
                                                         otherButtonTitles:drainButton, nil];
         [actionSheet showFromBarButtonItem:sender animated:YES];
         self.bookshelfControlActionSheet = actionSheet;  
@@ -118,9 +118,9 @@
         [self.bookshelf.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     } else {
         NSString *choice = [actionSheet buttonTitleAtIndex:buttonIndex];
-        if ([choice isEqualToString:SINK_CONTROL_STOP_DRAIN]) {
+        if ([choice isEqualToString:BOOKSHELF_CONTROL_STOP_DRAIN]) {
             [self stopDrainTimer];
-        } else if ([choice isEqualToString:SINK_CONTROL_UNSTOP_DRAIN]) {
+        } else if ([choice isEqualToString:BOOKSHELF_CONTROL_UNSTOP_DRAIN]) {
             [self startDrainTimer];
         }
     }
