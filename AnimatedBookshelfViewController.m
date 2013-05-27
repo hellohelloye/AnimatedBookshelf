@@ -29,11 +29,6 @@
     [self presentImagePicker:UIImagePickerControllerSourceTypeCamera sender:sender];
 }
 
-
-// presents a UIImagePickerController which gets an image from the specified sourceType
-// on iPad, if sourceType is not Camera, presents in a popover from the given UIBarButtonItem
-//   (else modally)
-
 - (void)presentImagePicker:(UIImagePickerControllerSourceType)sourceType sender:(UIBarButtonItem *)sender
 {
     if (!self.imagePickerPopover && [UIImagePickerController isSourceTypeAvailable:sourceType]) {
@@ -60,7 +55,6 @@
     self.imagePickerPopover = nil;
 }
 
-// UIImagePickerController was canceled, so dismiss it
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
@@ -71,7 +65,7 @@
 
 // called when the user chooses an image in the UIImagePickerController
 // limit any image to MAX_IMAGE_WIDTH
-// randomly drops it into the kitchen sink
+// randomly drops it into the bookshelf
 // dismisses the UIImagePickerController
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
@@ -113,7 +107,7 @@
                                                    destructiveButtonTitle:SINK_CONTROL_EMPTY
                                                         otherButtonTitles:drainButton, nil];
         [actionSheet showFromBarButtonItem:sender animated:YES];
-        self.bookshelfControlActionSheet = actionSheet;  // sinkControlActionSheet is weak, but showing gives the popover a strong pointer to it
+        self.bookshelfControlActionSheet = actionSheet;  
     }
 
 }
